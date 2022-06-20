@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sonarqube-ingress
+  namespace: sonarqube
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+    - hosts:
+        - >-
+          abc.cloud.com
+      secretName: secretName(tls cert and key)
+  rules:
+    - host: >-
+        aicoe-sonarqube.abc.cloud.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aicoe-sonarqube
+                port:
+                  number: 9000

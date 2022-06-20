@@ -1,0 +1,21 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: aicoe-sonarqube
+  namespace: sonarqube
+  labels:
+    k8s-app: aicoe-sonarqube
+spec:
+  ports:
+    - name: tcp
+      protocol: TCP
+      port: 9000
+      targetPort: 9000
+  selector:
+    k8s-app: aicoe-sonarqube
+  type: ClusterIP
+  sessionAffinity: None
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  internalTrafficPolicy: Cluster
