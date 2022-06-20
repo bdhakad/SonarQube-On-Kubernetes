@@ -13,13 +13,13 @@ spec:
       secretName: secretName(tls cert and key)
   rules:
     - host: >-
-        aicoe-sonarqube.abc.cloud.com
+        kubernetes-sonarqube.abc.cloud.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: aicoe-sonarqube
+                name: kubernetes-sonarqube
                 port:
                   number: 9000

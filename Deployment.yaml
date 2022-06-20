@@ -1,28 +1,28 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: aicoe-sonarqube
+  name: kubernetes-sonarqube
   namespace: sonarqube
   labels:
-    app: aicoe-sonarqube
+    app: kubernetes-sonarqube
 spec:
  replicas: 1
  selector:
    matchLabels:
-     app: aicoe-sonarqube
+     app: kubernetes-sonarqube
  template:
   metadata:
      labels:
-       app: aicoe-sonarqube    
+       app: kubernetes-sonarqube    
   spec:
     volumes:
       - name: sonarqube-data
         persistentVolumeClaim:
-          claimName: aicoe-sonarqube
+          claimName: kubernetes-sonarqube
       - name: sonarqube-logs
         emptyDir: {}
     containers:
-    - name: aicoe-sonarqube
+    - name: kubernetes-sonarqube
       image: sonarqube:latest
       env:
         - name: SONAR_ES_BOOTSTRAP_CHECKS_DISABLE
